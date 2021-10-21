@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodebackend
+  name: nodebackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodebackend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nodebackend
+    spec:
+      containers:
+      - image: mannyaboah/nodebackend:v0.1
+        name: nodebackend
+        imagePullPolicy: "Always"
+        env:
+        - name: PORT
+          value: "8082"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "0.1"
+          limits:
+            memory: "256Mi"
+            cpu: "0.2"
+status: {}

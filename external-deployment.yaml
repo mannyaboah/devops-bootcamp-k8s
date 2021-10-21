@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodefrontend
+  name: nodefrontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodefrontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nodefrontend
+    spec:
+      containers:
+      - image: mannyaboah/nodefrontend:v0.1
+        name: nodefrontend
+        imagePullPolicy: "Always"
+        env:
+        - name: SERVER
+          value: "http://nodebackend"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "0.1"
+          limits:
+            memory: "256Mi"
+            cpu: "0.2"
+status: {}

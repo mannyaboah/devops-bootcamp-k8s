@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: react-namespace
+  labels:
+    app: reactui
+  name: reactui
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: reactui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: reactui
+    spec:
+      containers:
+      - image: mannyaboah/reactui:v0.2
+        name: reactui
+        imagePullPolicy: "Always"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "0.1"
+          limits:
+            memory: "256Mi"
+            cpu: "0.2"
+status: {}
